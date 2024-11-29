@@ -94,7 +94,7 @@ public class TarefaService {
 
 
     // Método para atualizar tarefa
-    /*  public Object atualizarTarefa(Request req, Response res, int id) {
+       public Object atualizarTarefa(Request req, Response res, int id) {
 
         res.type("application/json");
         String json = req.body();
@@ -112,7 +112,7 @@ public class TarefaService {
             res.status(500); // Status 500 (Internal Server Error)
             return "{\"erro\":\"Erro ao atualizar a tarefa: " + e.getMessage() + "\"}";
         }
-    } */
+    } 
 
     // Método de teste
     public String teste(Request req, Response res) {

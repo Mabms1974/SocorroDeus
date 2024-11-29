@@ -191,7 +191,7 @@ header nav ul li.li-dropdown .dropdown-container {
 }
 
 .conclude-div {
-  display: flex;
+  display: none;
   align-items: center;
 }
 
@@ -363,6 +363,7 @@ header nav ul li.li-dropdown .dropdown-container {
 }
 
 .card-header h5 {
+  margin-top: 1.5rem;
   width: 90%;
 }
 
@@ -1116,7 +1117,7 @@ header nav ul li.li-dropdown .dropdown-container {
   top: 0;
   width: 100%;
   box-shadow: 0 4px 20px hsla(207, 24%, 35%, 0.1);
-  background-color: #004aad;
+  background: #173e67;
   z-index: 1;
   padding: 0;
   height: 12vh;
@@ -1133,7 +1134,7 @@ header nav ul li.li-dropdown .dropdown-container {
 }
 
 .logo-icon {
-  width: 100px;
+  width: 80px;
 }
 
 .menu {

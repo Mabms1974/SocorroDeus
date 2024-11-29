@@ -205,6 +205,15 @@ public class App {
 
         post("tarefa/inserir", (request, response) -> tarefaService.insertTarefa(request, response));
 
+        put("/tarefa/editar/:id", (req, res) -> {
+            int id = Integer.parseInt(req.params(":id"));
+            Object resultado = tarefaService.atualizarTarefa(req, res, id);
+
+            res.type("application/json");
+
+            return resultado;
+        });
+
         get("/usuario/:username/:password", (request, response) -> usuarioService.getUserbyNameandPassword(request, response));
 
         put("/atualizar/:id", (req, res) -> {

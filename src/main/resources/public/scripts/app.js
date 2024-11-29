@@ -12,14 +12,14 @@ console.log(id);
 
 
 function updateTarefas(id, concluir) {
-    fetch(`https://c66378d6-23b9-4a44-87e2-44bfce35e6b4-00-2axwcp1najbzx.worf.replit.dev/tarefas/${id}`)
+    fetch(`localhost:8080/tarefa/editar/${id}`)
         .then(response => response.json())
         .then(data => {
             // Atualize o campo desejado
             data.status = concluir
             //const tarefaEncontrada = jsonData[0].tarefas.find(tarefa => tarefa.id === targetTaskId);
             // Enviar uma requisição PUT para atualizar o objeto no servidor
-            return fetch(`https://c66378d6-23b9-4a44-87e2-44bfce35e6b4-00-2axwcp1najbzx.worf.replit.dev/tarefas/${id}`, {
+            return fetch(`localhost:8080/tarefa/editar/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -38,14 +38,23 @@ function updateTarefas(id, concluir) {
         });
 }
 
-
-
-var db = []
-readTarefas(dados => {
-    console.log(dados)
-    db = dados;
-    ListarTarefas()
+document.addEventListener('DOMContentLoaded', function () {
+    var db = [];
+    readTarefas(dados => {
+        console.log(dados);
+        db = dados;
+        ListarTarefas();
+    });
 });
+
+function readTarefas(callback) {
+    // Lógica para buscar as tarefas, como uma chamada para uma API
+    fetch('/tarefas')
+        .then(response => response.json())
+        .then(data => callback(data))
+        .catch(error => console.error('Erro ao ler tarefas:', error));
+}
+
 
 // função para listar as tarefas por ordem de data e horario  
 export function ListarTarefas() {
@@ -251,9 +260,6 @@ function concluir() {
         });
     }
 }
-
-
-
 
 
 function map_priority(priority) {

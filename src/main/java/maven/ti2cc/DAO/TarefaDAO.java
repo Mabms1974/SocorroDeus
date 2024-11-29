@@ -169,34 +169,43 @@ public class TarefaDAO extends DAO {
      * }
      */
 
-    /*
-     * public boolean updateTarefa(Tarefa tarefa, int id) {
-     * String sql =
-     * "UPDATE tarefa SET nometarefa = ?, descricao = ?, dataprazo = ?, prioridade = ?, status = ?, datacriacao = ?, recorrencia = ?, diasdasemana = ?, usuario_id_usuario1 = ? WHERE id_tarefa = ?"
-     * ;
-     * 
-     * try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-     * stmt.setString(1, tarefa.getNomeTarefa());
-     * stmt.setString(2, tarefa.getDescricao());
-     * stmt.setString(3, tarefa.getDataprazo());
-     * stmt.setString(4, tarefa.getPrioridade());
-     * stmt.setString(5, tarefa.getStatus());
-     * stmt.setString(6, tarefa.getDataCriacao());
-     * stmt.setBoolean(7, tarefa.isRecorrencia());
-     * stmt.setString(8, tarefa.getDiasDaSemana());
-     * stmt.setInt(9, tarefa.getUsuarioIdUsuario1());
-     * stmt.setInt(10, id);
-     * 
-     * int affectedRows = stmt.executeUpdate();
-     * System.out.println("Linhas afetadas: " + affectedRows);
-     * 
-     * return affectedRows > 0;
-     * } catch (SQLException e) {
-     * e.printStackTrace();
-     * return false;
-     * }
-     * }
-     */
+    
+     public boolean updateTarefa(Tarefa tarefa, int id) {
+        String sql = "UPDATE tarefa SET nometarefa = ?, descricao = ?, dataprazo = ?, prioridade = ?, status = ?, recorrencia = ?, usuario_id_usuario1 = ? WHERE id_tarefa = ?";
+    
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            // Configura os parâmetros do PreparedStatement
+            stmt.setString(1, tarefa.getNomeTarefa());
+            stmt.setString(2, tarefa.getDescricao());
+            stmt.setString(3, tarefa.getDataprazo());
+            stmt.setInt(4, tarefa.getPrioridade());
+            stmt.setInt(5, tarefa.getStatus());
+    
+            // Conversão do array boolean[] para um tipo SQL Array
+            boolean[] recorrenciaArray = tarefa.isRecorrencia();
+            Boolean[] recorrenciaArrayObject = new Boolean[recorrenciaArray.length];
+            for (int i = 0; i < recorrenciaArray.length; i++) {
+                recorrenciaArrayObject[i] = recorrenciaArray[i];
+            }
+            Array sqlArray = connection.createArrayOf("boolean", recorrenciaArrayObject);
+            stmt.setArray(6, sqlArray);
+    
+            stmt.setInt(7, tarefa.getUsuarioIdUsuario1());
+            stmt.setInt(8, id);
+    
+            // Executa a atualização no banco de dados
+            int affectedRows = stmt.executeUpdate();
+            System.out.println("Linhas afetadas: " + affectedRows);
+    
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            System.err.println("Erro ao atualizar tarefa: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+     
 
     // Método para deletar uma tarefa
     public boolean deleteTarefa(String nome, int id) {

@@ -8,12 +8,46 @@
   <link rel="stylesheet" href="../styles/atonacoes.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="../styles/style.css" rel="stylesheet">
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Parkinsans:wght@300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
 </head>
 
 <body>
+    <header class="header">
+      <!-- <a onclick="returnHomePage()"><img src="assets/imgs/CLOCK - PNG.png" id="logo"></a>
+      <ul>
+          <li><a href="./metodosEstudo.html">Metodos de Estudos</a></li>
+          <li><a href="#">Minha Conta</a></li>
+          <li><a href="#" id="btn_logout">Sair</a></li>
+      </ul> -->
+      <nav class="nav">
+          <div class="logo">
+              <a href="#" onclick="returnHomePage()">
+                  <img src="../assets/clock-removebg.png" class="logo-icon" />
+              </a>
+          </div>
+          <input type="checkbox" id="menu-toggle">
+          <label for="menu-toggle" class="menu-icon">&#9776;</label>
+          <ul class="menu">
+              <li><a href="./metodosEstudo.html">Metodos de Estudos</a></li>
+              <li><a href="./anotacoes.html">Anotações</a></li>
+              <li><a href="./Desempenho.html">Desempenho</a></li>
+              <li><a href="#" class="btn btn-primary" id="btn-timer-header" data-bs-toggle="modal"
+                      data-bs-target="#timerModal">Temporizador</a></li>
+              <li class="li-dropdown"><span class="arrow">></span> Minha conta
+                  <div class="dropdown-overlay">
+                      <div class="dropdown-container">
+                          <div class="content-all-my-profile" id="content-my-profile"></div>
+                          <a href="/login.html" id="btn_logout">Sair</a>
+                      </div>
+                  </div>
+              </li>
+
+          </ul>
+      </nav>
+  </header>
   <div id="formulario">
     <div class="container-notation">
       <header>
